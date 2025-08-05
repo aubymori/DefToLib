@@ -10,10 +10,13 @@ decoration in the .def file. However, for named functions, this will result in t
 resulting binary.
 
 ## How to use
-1. Put `DefToLib.ps1` in the `scripts` folder in the root of your solution.
-2. Put the contents of `For your .vcxproj.xml`,
-somewhere inside the `Project` root element in your .vcxproj file.
-3. Inside your project, create a `defs` directory.
+1. Clone this repository into your project. For example, `<ProjectRoot>\libs\DefToLib`.
+2. In your .vcxproj file, add the following line after `<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />`:
+   ```xml
+   <Import Project="libs\DefToLib\DefToLib.targets" Condition="Exists('libs\DefToLib\DefToLib.targets')" />
+   ```
+   Adjust the path as necessary to match your project structure.
+3. In your project's root directory, create a `defs` directory (`<ProjectRoot>\defs`).
 4. Any `.def` file inside that directory will automatically be compiled and linked to your project.
    Make sure to read the [Syntax](#syntax) section before making any .def files.
 
