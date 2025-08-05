@@ -47,6 +47,12 @@ if ($machine -eq "X86")
                 continue
             }
             $libname = $line.Substring($libstart + 1)
+
+            if ($libname.Substring($libname.Length - 4) -eq ".DLL")
+            {
+                $libname = $libname.Substring(0, $libname.Length - 4)
+            }
+
             Write-Output "Library: $libname"
         }
 
