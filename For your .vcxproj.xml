@@ -1,0 +1,15 @@
+  <ItemGroup>
+    <_DefToLib Include="defs\*.def" />
+  </ItemGroup>
+  <Target Name="_GenerateDefLib" BeforeTargets="Link" Inputs="@(_DefToLib)" Outputs="@(_DefToLib->'$(IntDir)%(Filename).lib')">
+    <Exec Command="powershell.exe -File &quot;$(SolutionDir)scripts\DefToLib.ps1&quot; -Def &quot;%(_DefToLib.Identity)&quot; -Machine $(PlatformShortName) -OutDir &quot;$(IntDir)&quot;" />
+  </Target>
+  <PropertyGroup>
+    <_GeneratedLibs>@(_DefToLib->'%(Filename).lib')</_GeneratedLibs>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories>$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(_GeneratedLibs);%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
