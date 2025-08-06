@@ -2,6 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <_DefToLib Include="defs\*.def" />
+    <None Include="defs\*.def" />
   </ItemGroup>
   <Target Name="_GenerateDefLib" BeforeTargets="Link" Inputs="@(_DefToLib)" Outputs="@(_DefToLib->'$(IntDir)%(Filename).lib')">
     <Exec Command="powershell.exe -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)DefToLib.ps1&quot; -Def &quot;%(_DefToLib.Identity)&quot; -Machine $(PlatformShortName) -OutDir &quot;$(IntDir)&quot;" />

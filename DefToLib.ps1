@@ -134,7 +134,7 @@ if ($machine -eq "X86")
 
     $outdll = Join-Path $outdir "$libname.dll"
     $outlib = Join-Path $outdir "$defnoext.lib"
-    cl.exe "$outcpp" "/nologo" "/Fo:$outdir" "/link" "/DLL" "/DEF:$def" "/MACHINE:$machine" "/ENTRY:DllMain" "/OUT:$outdll" "/IMPLIB:$outlib"
+    cl.exe "$outcpp" "/nologo" "/Fo:$outdir\" "/link" "/DLL" "/DEF:$def" "/MACHINE:$machine" "/ENTRY:DllMain" "/OUT:$outdll" "/IMPLIB:$outlib"
 }
 # For X64 and ARM64 we can just compile the lib like normal
 else
