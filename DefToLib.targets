@@ -8,7 +8,7 @@
     <None Include="$(DefToLib_DefsDir)*.def" />
   </ItemGroup>
   <Target Name="_GenerateDefLib" AfterTargets="ClCompile" Inputs="@(_DefToLib)" Outputs="@(_DefToLib->'$(IntDir)%(Filename).lib')">
-    <Exec Command="powershell.exe -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)DefToLib.ps1&quot; -Def &quot;%(_DefToLib.Identity)&quot; -Machine $(PlatformShortName) -OutDir &quot;$(IntDir)&quot;"
+    <Exec Command="powershell.exe -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)DefToLib.ps1&quot; -Def &quot;%(_DefToLib.Identity)&quot; -OutDir &quot;$(IntDir)&quot;"
           Condition="'$(PlatformShortName)' == 'X86'" />
     <Exec Command="lib.exe /nologo /def:&quot;%(_DefToLib.Identity)&quot; /machine:$(PlatformShortName) /out:&quot;$(IntDir)%(Filename).lib&quot;"
           Condition="'$(PlatformShortName)' != 'X86'" />
