@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <DefToLib_DefsDir Condition="'$(DefToLib_DefsDir)' == ''">>defs\</DefToLib_DefsDir>
+    <DefToLib_DefsDir Condition="'$(DefToLib_DefsDir)' == ''">defs\</DefToLib_DefsDir>
   </PropertyGroup>
   <ItemGroup>
     <_DefToLib Include="$(DefToLib_DefsDir)*.def" />
